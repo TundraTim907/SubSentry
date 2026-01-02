@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth">
+  <h1>Log in to SubSentry</h1>
+  <form method="post" class="form-card">
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <button type="submit" class="button">Log in</button>
+  </form>
+</section>
+{% endblock %}

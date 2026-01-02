@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <div>
+    <h1>Track every subscription without handing over your accounts.</h1>
+    <p>SubSentry is your private subscription ledger. Paste charges, organize recurring spend, and follow clear cancellation paths without sharing credentials.</p>
+    <div class="hero-actions">
+      <a class="button" href="{{ url_for('signup') }}">Create your account</a>
+      <a class="button secondary" href="{{ url_for('login') }}">Log in</a>
+    </div>
+  </div>
+  <div class="hero-card">
+    <h3>Why SubSentry?</h3>
+    <ul>
+      <li>No bank logins. No email access. Ever.</li>
+      <li>AI-assisted categorization from pasted statements.</li>
+      <li>Instant monthly and annual totals.</li>
+      <li>Clear cancellation steps per service.</li>
+    </ul>
+  </div>
+</section>
+
+<section class="features">
+  <h2>How it works</h2>
+  <div class="grid">
+    <div>
+      <h4>1. Add transactions</h4>
+      <p>Paste a statement snippet or enter a subscription manually with amount and frequency.</p>
+    </div>
+    <div>
+      <h4>2. Let AI organize</h4>
+      <p>We classify recurring charges into platforms and categories so you can see the patterns.</p>
+    </div>
+    <div>
+      <h4>3. Take action</h4>
+      <p>Mark items to keep or cancel and follow trusted cancellation instructions.</p>
+    </div>
+  </div>
+</section>
+
+<section class="plans">
+  <h2>Plans built for trust</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Free</h3>
+      <p>Up to 10 subscriptions with manual entry and totals.</p>
+      <ul>
+        <li>Manual input only</li>
+        <li>Basic totals</li>
+        <li>Secure account</li>
+      </ul>
+    </div>
+    <div class="card highlight">
+      <h3>Pro</h3>
+      <p>Unlimited subscriptions with AI classification.</p>
+      <ul>
+        <li>Paste import</li>
+        <li>AI categories + platforms</li>
+        <li>Export to CSV</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Business</h3>
+      <p>Household or team tracking with advanced analytics.</p>
+      <ul>
+        <li>Multiple profiles</li>
+        <li>Renewal reminders</li>
+        <li>Advanced dashboards</li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endblock %}

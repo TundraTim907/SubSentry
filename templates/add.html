@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="add">
+  <h1>Add subscriptions</h1>
+  <div class="grid two">
+    <div class="card">
+      <h2>Manual entry</h2>
+      <form method="post" action="{{ url_for('add_manual') }}" class="form-card">
+        <label>Merchant name
+          <input type="text" name="merchant_name" required>
+        </label>
+        <label>Amount
+          <input type="number" name="amount" step="0.01" required>
+        </label>
+        <label>Frequency
+          <select name="frequency">
+            <option>Monthly</option>
+            <option>Yearly</option>
+            <option>Unknown</option>
+          </select>
+        </label>
+        <label>Platform
+          <select name="platform">
+            <option>Unknown</option>
+            <option>Apple</option>
+            <option>Google</option>
+            <option>PayPal</option>
+            <option>Card</option>
+          </select>
+        </label>
+        <label>Category
+          <select name="category">
+            <option>Uncategorized</option>
+            <option>Streaming</option>
+            <option>SaaS</option>
+            <option>Utilities</option>
+            <option>Fitness</option>
+            <option>News</option>
+            <option>Cloud</option>
+            <option>Security</option>
+          </select>
+        </label>
+        <label>Status
+          <select name="status">
+            <option value="review">Review</option>
+            <option value="keep">Keep</option>
+            <option value="cancel">Cancel</option>
+          </select>
+        </label>
+        <label>Notes
+          <textarea name="notes" rows="3" placeholder="Renewal date, shared account, or billing notes."></textarea>
+        </label>
+        <button type="submit" class="button">Add subscription</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Paste transactions</h2>
+      {% if plan == 'free' %}
+        <p class="muted">Upgrade to Pro to unlock AI classification from pasted statements.</p>
+      {% endif %}
+      <form method="post" action="{{ url_for('add_paste') }}" class="form-card">
+        <label>Paste statement lines
+          <textarea name="paste_text" rows="10" placeholder="Netflix 15.49\nSpotify 11.99\nApple One 19.95" {% if plan == 'free' %}disabled{% endif %}></textarea>
+        </label>
+        <button type="submit" class="button" {% if plan == 'free' %}disabled{% endif %}>Import and classify</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}

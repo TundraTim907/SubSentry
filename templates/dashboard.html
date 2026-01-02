@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="dashboard">
+  <div class="dashboard-header">
+    <div>
+      <h1>Your Subscription Dashboard</h1>
+      <p class="muted">Plan: {{ plan|capitalize }} · Keep your data current to uncover waste.</p>
+    </div>
+    <div class="dashboard-actions">
+      <a class="button" href="{{ url_for('add_subscription') }}">Add subscriptions</a>
+      {% if plan != 'free' %}
+        <a class="button secondary" href="{{ url_for('export_csv') }}">Export CSV</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="stats-grid">
+    <div class="stat">
+      <h3>${{ "%.2f"|format(totals.monthly) }}</h3>
+      <p>Estimated monthly total</p>
+    </div>
+    <div class="stat">
+      <h3>${{ "%.2f"|format(totals.yearly) }}</h3>
+      <p>Estimated yearly total</p>
+    </div>
+    <div class="stat">
+      <h3>${{ "%.2f"|format(totals.savings) }}</h3>
+      <p>Potential savings from cancellations</p>
+    </div>
+  </div>
+
+  {% if duplicate_groups %}
+    <div class="callout">
+      <h3>Possible duplicates detected</h3>
+      <p>Review these charges to avoid double billing.</p>
+      <ul>
+        {% for key, items in duplicate_groups.items() %}
+          <li>{{ items[0].merchant_name }} · ${{ "%.2f"|format(items[0].amount) }} ({{ items|length }} entries)</li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  <div class="table">
+    <div class="table-row header">
+      <span>Merchant</span>
+      <span>Amount</span>
+      <span>Frequency</span>
+      <span>Platform</span>
+      <span>Category</span>
+      <span>Status</span>
+      <span></span>
+    </div>
+    {% for sub in subscriptions %}
+      <div class="table-row">
+        <span>{{ sub.merchant_name }}</span>
+        <span>${{ "%.2f"|format(sub.amount) }}</span>
+        <span>{{ sub.frequency }}</span>
+        <span>{{ sub.platform }}</span>
+        <span>{{ sub.category }}</span>
+        <span class="status {{ sub.status }}">{{ sub.status|capitalize }}</span>
+        <span>
+          <a href="{{ url_for('view_subscription', sub_id=sub.id) }}">View</a>
+        </span>
+      </div>
+    {% else %}
+      <p class="muted">No subscriptions yet. Add your first one to see totals.</p>
+    {% endfor %}
+  </div>
+</section>
+{% endblock %}

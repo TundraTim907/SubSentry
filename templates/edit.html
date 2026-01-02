@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth">
+  <h1>Edit subscription</h1>
+  <form method="post" class="form-card">
+    <label>Merchant name
+      <input type="text" name="merchant_name" value="{{ subscription.merchant_name }}" required>
+    </label>
+    <label>Amount
+      <input type="number" name="amount" step="0.01" value="{{ subscription.amount }}" required>
+    </label>
+    <label>Frequency
+      <select name="frequency">
+        {% for option in ['Monthly', 'Yearly', 'Unknown'] %}
+          <option value="{{ option }}" {% if subscription.frequency == option %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Platform
+      <select name="platform">
+        {% for option in ['Unknown', 'Apple', 'Google', 'PayPal', 'Card'] %}
+          <option value="{{ option }}" {% if subscription.platform == option %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Category
+      <select name="category">
+        {% for option in ['Uncategorized', 'Streaming', 'SaaS', 'Utilities', 'Fitness', 'News', 'Cloud', 'Security'] %}
+          <option value="{{ option }}" {% if subscription.category == option %}selected{% endif %}>{{ option }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Status
+      <select name="status">
+        {% for option in ['review', 'keep', 'cancel'] %}
+          <option value="{{ option }}" {% if subscription.status == option %}selected{% endif %}>{{ option|capitalize }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>Notes
+      <textarea name="notes" rows="4">{{ subscription.notes }}</textarea>
+    </label>
+    <button type="submit" class="button">Save changes</button>
+  </form>
+</section>
+{% endblock %}

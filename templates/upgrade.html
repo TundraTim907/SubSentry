@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="plans">
+  <h1>Choose your plan</h1>
+  <form method="post" class="grid">
+    <label class="card">
+      <input type="radio" name="plan" value="free" {% if plan == 'free' %}checked{% endif %}>
+      <h3>Free</h3>
+      <p>Manual entry with up to 10 subscriptions.</p>
+      <ul>
+        <li>Manual input only</li>
+        <li>Basic totals</li>
+        <li>Secure storage</li>
+      </ul>
+    </label>
+    <label class="card highlight">
+      <input type="radio" name="plan" value="pro" {% if plan == 'pro' %}checked{% endif %}>
+      <h3>Pro</h3>
+      <p>Unlimited subscriptions with AI classification and export.</p>
+      <ul>
+        <li>Paste import with AI categorization</li>
+        <li>Duplicate detection</li>
+        <li>CSV export</li>
+      </ul>
+    </label>
+    <label class="card">
+      <input type="radio" name="plan" value="business" {% if plan == 'business' %}checked{% endif %}>
+      <h3>Business</h3>
+      <p>Team tracking and advanced analytics.</p>
+      <ul>
+        <li>Multi-profile support</li>
+        <li>Renewal reminders</li>
+        <li>Advanced dashboards</li>
+      </ul>
+    </label>
+    <div class="full">
+      <button type="submit" class="button">Update plan</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

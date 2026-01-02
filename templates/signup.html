@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="auth">
+  <h1>Create your SubSentry account</h1>
+  <form method="post" class="form-card">
+    <label>Email
+      <input type="email" name="email" required>
+    </label>
+    <label>Password
+      <input type="password" name="password" required>
+    </label>
+    <label>Choose a plan
+      <select name="plan">
+        <option value="free">Free</option>
+        <option value="pro">Pro</option>
+        <option value="business">Business</option>
+      </select>
+    </label>
+    <button type="submit" class="button">Create account</button>
+  </form>
+  <p class="muted">We never access your bank, email, or other accounts.</p>
+</section>
+{% endblock %}
